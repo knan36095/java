@@ -1,4 +1,4 @@
-package org.dxstudio.openapi.dto;
+package org.dxstudio.openapi.response;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,11 +10,11 @@ import org.dxstudio.openapi.enums.TradeAddressTargetType;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
-public class ToAnyWalletResponseDto extends BaseResponseDto<ToAnyWalletResponseDto.ToAnyWalletData>{
+public class ToAnyWalletByCustomRateResponse extends BaseResponse<ToAnyWalletByCustomRateResponse.ToAnyWalletByCustomRateData> {
 
     @Data
     @ToString
-    public static class ToAnyWalletData {
+    public static class ToAnyWalletByCustomRateData {
         /**
          * 订单号
          */

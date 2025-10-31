@@ -2,9 +2,9 @@ package withdrawal;
 
 import config.ApiConfig;
 import org.dxstudio.openapi.config.Config;
-import org.dxstudio.openapi.dto.ToAnyWalletByCustomRateResponseDto;
-import org.dxstudio.openapi.dto.ToAnyWalletResponseDto;
-import org.dxstudio.openapi.dto.ToMinPayWalletResponseDto;
+import org.dxstudio.openapi.response.ToAnyWalletByCustomRateResponse;
+import org.dxstudio.openapi.response.ToAnyWalletResponse;
+import org.dxstudio.openapi.response.ToMinPayWalletResponse;
 import org.dxstudio.openapi.enums.NetworkType;
 import org.dxstudio.openapi.request.ToAnyWalletByCustomRateRequest;
 import org.dxstudio.openapi.request.ToAnyWalletRequest;
@@ -33,7 +33,7 @@ public class WithdrawalTest {
         param.setAmount(new BigDecimal("10"));
         param.setCurrency("USDT");
         param.setNotifyUrl("https://merchant/callback");
-        ToMinPayWalletResponseDto execute = client.execute(param);
+        ToMinPayWalletResponse execute = client.execute(param);
         System.out.println(execute.toString());
     }
 
@@ -53,7 +53,7 @@ public class WithdrawalTest {
         param.setCurrency("USDT");
         param.setAddress("TPutFhYUQnrRxHSmKVwjp55vgk9QY6r5nS");
         param.setIsBlockchain(true);
-        ToAnyWalletResponseDto execute = client.execute(param);
+        ToAnyWalletResponse execute = client.execute(param);
         System.out.println(execute.toString());
     }
 
@@ -76,7 +76,7 @@ public class WithdrawalTest {
         param.setAddress("TPutFhYUQnrRxHSmKVwjp55vgk9QY6r5nS");
         param.setIsBlockchain(true);
         param.setIsBlockchain(true);
-        ToAnyWalletByCustomRateResponseDto execute = client.execute(param);
+        ToAnyWalletByCustomRateResponse execute = client.execute(param);
         System.out.println(execute.toString());
     }
 

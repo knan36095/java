@@ -5,15 +5,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.dxstudio.openapi.dto.ToAnyWalletByCustomRateResponseDto;
-import org.dxstudio.openapi.dto.ToAnyWalletResponseDto;
+import org.dxstudio.openapi.response.ToAnyWalletByCustomRateResponse;
 import org.dxstudio.openapi.enums.NetworkType;
 
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ToAnyWalletByCustomRateRequest extends BaseRequest<ToAnyWalletByCustomRateResponseDto>{
+public class ToAnyWalletByCustomRateRequest extends BaseRequest<ToAnyWalletByCustomRateResponse>{
 
     /**
      * 提款到账币种(钱包支持币种)
@@ -45,8 +44,8 @@ public class ToAnyWalletByCustomRateRequest extends BaseRequest<ToAnyWalletByCus
     private BigDecimal quoteAmount;
 
     @Override
-    public Class<ToAnyWalletByCustomRateResponseDto> getResponseClass() {
-        return ToAnyWalletByCustomRateResponseDto.class;
+    public Class<ToAnyWalletByCustomRateResponse> getResponseClass() {
+        return ToAnyWalletByCustomRateResponse.class;
     }
 
     @Override

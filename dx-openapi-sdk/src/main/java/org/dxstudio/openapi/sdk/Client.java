@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.dxstudio.openapi.config.Config;
 import org.dxstudio.openapi.request.BaseRequest;
-import org.dxstudio.openapi.dto.BaseResponseDto;
+import org.dxstudio.openapi.response.BaseResponse;
 import org.dxstudio.openapi.untils.HttpClientUntil;
 import org.dxstudio.openapi.untils.SignUtil;
 
@@ -22,7 +22,7 @@ public class Client {
     private final Config config;
 
     @SneakyThrows
-    public <T extends BaseResponseDto> T execute(@Valid  BaseRequest<T> request) {
+    public <T extends BaseResponse> T execute(@Valid  BaseRequest<T> request) {
         // 参数校验
         if (request == null) {
             throw new IllegalArgumentException("请求参数不能为空");

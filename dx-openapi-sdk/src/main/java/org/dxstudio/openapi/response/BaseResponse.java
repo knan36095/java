@@ -1,9 +1,9 @@
-package org.dxstudio.openapi.dto;
+package org.dxstudio.openapi.response;
 
 import lombok.Data;
 
 @Data
-public class BaseResponseDto<T> {
+public class BaseResponse<T> {
     private String code;
     private Boolean success=true;
     private String message;

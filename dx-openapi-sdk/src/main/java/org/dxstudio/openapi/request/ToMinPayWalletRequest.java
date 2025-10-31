@@ -4,14 +4,13 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.commons.lang3.StringUtils;
-import org.dxstudio.openapi.dto.ToMinPayWalletResponseDto;
+import org.dxstudio.openapi.response.ToMinPayWalletResponse;
 
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ToMinPayWalletRequest extends BaseRequest<ToMinPayWalletResponseDto> {
+public class ToMinPayWalletRequest extends BaseRequest<ToMinPayWalletResponse> {
 
     /**
      * 提款金额(商户默认币种)
@@ -35,8 +34,8 @@ public class ToMinPayWalletRequest extends BaseRequest<ToMinPayWalletResponseDto
     private String email;
 
     @Override
-    public Class<ToMinPayWalletResponseDto> getResponseClass() {
-        return ToMinPayWalletResponseDto.class;
+    public Class<ToMinPayWalletResponse> getResponseClass() {
+        return ToMinPayWalletResponse.class;
     }
     @Override
     public String getBasePath() {

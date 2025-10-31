@@ -3,10 +3,10 @@ package org.dxstudio.openapi.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.dxstudio.openapi.dto.BaseResponseDto;
+import org.dxstudio.openapi.response.BaseResponse;
 
 @Data
-public abstract class BaseRequest<T extends BaseResponseDto> {
+public abstract class BaseRequest<T extends BaseResponse> {
     /**
      * 商户请求key
      */

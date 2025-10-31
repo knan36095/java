@@ -5,15 +5,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.dxstudio.openapi.dto.ToAnyWalletResponseDto;
-import org.dxstudio.openapi.dto.ToMinPayWalletResponseDto;
+import org.dxstudio.openapi.response.ToAnyWalletResponse;
 import org.dxstudio.openapi.enums.NetworkType;
 
 import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ToAnyWalletRequest extends BaseRequest<ToAnyWalletResponseDto>{
+public class ToAnyWalletRequest extends BaseRequest<ToAnyWalletResponse>{
     /**
      * 提款金额(商户默认币种)
      */
@@ -38,8 +37,8 @@ public class ToAnyWalletRequest extends BaseRequest<ToAnyWalletResponseDto>{
     @NotBlank(message = "提款地址不能为空")
     private String address;
     @Override
-    public Class<ToAnyWalletResponseDto> getResponseClass() {
-        return ToAnyWalletResponseDto.class;
+    public Class<ToAnyWalletResponse> getResponseClass() {
+        return ToAnyWalletResponse.class;
     }
     @Override
     public String getBasePath() {
