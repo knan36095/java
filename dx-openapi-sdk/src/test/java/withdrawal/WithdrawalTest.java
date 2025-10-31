@@ -19,6 +19,7 @@ public class WithdrawalTest {
 
     private final ApiConfig apiConfig = new ApiConfig();
 
+
     /**
      * 提款至MinPay钱包
      */
@@ -27,7 +28,7 @@ public class WithdrawalTest {
         Client client = initClient();
         ToMinPayWalletRequest param = new ToMinPayWalletRequest();
         param.setKey(apiConfig.getKey());
-        param.setLocalOrderId(String.valueOf(new Random().nextInt(10)));
+        param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
         param.setEmail("knan36095@gmail.com");
         param.setAmount(new BigDecimal("10"));
@@ -45,7 +46,7 @@ public class WithdrawalTest {
         Client client = initClient();
         ToAnyWalletRequest param = new ToAnyWalletRequest();
         param.setKey(apiConfig.getKey());
-        param.setLocalOrderId(String.valueOf(new Random().nextInt(10)));
+        param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
         param.setNotifyUrl("https://merchant/callback");
         param.setNetwork(NetworkType.TRON);
@@ -66,7 +67,7 @@ public class WithdrawalTest {
         Client client = initClient();
         ToAnyWalletByCustomRateRequest param = new ToAnyWalletByCustomRateRequest();
         param.setKey(apiConfig.getKey());
-        param.setLocalOrderId(String.valueOf(new Random().nextInt(10)));
+        param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
         param.setNotifyUrl("https://merchant/callback");
         param.setNetwork(NetworkType.TRON);
