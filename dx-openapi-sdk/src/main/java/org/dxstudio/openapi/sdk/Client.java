@@ -2,7 +2,10 @@ package org.dxstudio.openapi.sdk;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -14,13 +17,16 @@ import org.dxstudio.openapi.response.BaseResponse;
 import org.dxstudio.openapi.untils.HttpClientUntil;
 import org.dxstudio.openapi.untils.SignUtil;
 
+import java.util.Set;
+
 @Data
 @RequiredArgsConstructor
 @Slf4j
 public class Client {
 
     private final Config config;
-
+    // 添加 Validator 实例
+    private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     @SneakyThrows
     public <T extends BaseResponse> T execute(@Valid  BaseRequest<T> request) {
         // 参数校验
@@ -30,6 +36,18 @@ public class Client {
 
         if (config == null || StringUtils.isBlank(config.getSecret()) || StringUtils.isBlank(config.getBaseUrl())) {
             throw new IllegalStateException("配置信息不完整");
+        }
+        // 手动触发校验
+        Set<ConstraintViolation<BaseRequest<T>>> violations = validator.validate(request);
+        if (!violations.isEmpty()) {
+            StringBuilder sb = new StringBuilder("参数校验失败:");
+            for (ConstraintViolation<BaseRequest<T>> violation : violations) {
+                sb.append(violation.getPropertyPath())
+                        .append(" ")
+                        .append(violation.getMessage())
+                        .append("; ");
+            }
+            throw new IllegalArgumentException(sb.toString());
         }
 
         try {
