@@ -24,11 +24,6 @@ public enum NetworkType {
     POLYGON( NetworkGeneric.ETH),
 
     /**
-     * SOLANA
-     */
-    SOLANA( NetworkGeneric.SOLANA ),
-
-    /**
      * ETHEREUM
      */
     ETHEREUM( NetworkGeneric.ETH ),
@@ -36,8 +31,7 @@ public enum NetworkType {
     /**
      * VCHAIN私链
      */
-    V_CHAIN( NetworkGeneric.ETH )
-    ;
+    V_CHAIN( NetworkGeneric.ETH );
 
     private final NetworkGeneric generic;
 

@@ -1,18 +1,19 @@
-package org.dxstudio.openapi.param;
+package org.dxstudio.openapi.request;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.dxstudio.openapi.dto.ToAnyWalletResponseDto;
+import org.dxstudio.openapi.dto.ToMinPayWalletResponseDto;
 import org.dxstudio.openapi.enums.NetworkType;
 
 import java.math.BigDecimal;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class ToAnyWalletParam extends MerchantAPIParam{
+@EqualsAndHashCode(callSuper = true)
+public class ToAnyWalletRequest extends BaseRequest<ToAnyWalletResponseDto>{
     /**
      * 提款金额(商户默认币种)
      */
@@ -28,7 +29,7 @@ public class ToAnyWalletParam extends MerchantAPIParam{
 
 
     /**
-     * 主网(目前仅支持TRON)
+     * 主网(默认支持TRON)
      */
     @NotNull(message = "主网不能为空")
     private NetworkType network = NetworkType.TRON;
@@ -36,5 +37,12 @@ public class ToAnyWalletParam extends MerchantAPIParam{
 
     @NotBlank(message = "提款地址不能为空")
     private String address;
-
+    @Override
+    public Class<ToAnyWalletResponseDto> getResponseClass() {
+        return ToAnyWalletResponseDto.class;
+    }
+    @Override
+    public String getBasePath() {
+        return "/wallet-trade-merchant/v1/pay/blockchain/create";
+    }
 }

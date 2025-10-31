@@ -1,0 +1,77 @@
+package org.dxstudio.openapi.sdk;
+
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import jakarta.validation.Valid;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.dxstudio.openapi.config.Config;
+import org.dxstudio.openapi.request.BaseRequest;
+import org.dxstudio.openapi.dto.BaseResponseDto;
+import org.dxstudio.openapi.untils.HttpClientUntil;
+import org.dxstudio.openapi.untils.SignUtil;
+
+@Data
+@RequiredArgsConstructor
+@Slf4j
+public class Client {
+
+    private final Config config;
+
+    @SneakyThrows
+    public <T extends BaseResponseDto> T execute(@Valid  BaseRequest<T> request) {
+        // 参数校验
+        if (request == null) {
+            throw new IllegalArgumentException("请求参数不能为空");
+        }
+
+        if (config == null || StringUtils.isBlank(config.getSecret()) || StringUtils.isBlank(config.getBaseUrl())) {
+            throw new IllegalStateException("配置信息不完整");
+        }
+
+        try {
+            // 直接使用对象而非序列化后再反序列化
+            JSONObject params = new JSONObject();
+            // 这里保持原有逻辑，如需优化可考虑反射或其他方式直接转换
+            params = JSON.parseObject(JSON.toJSONString(request));
+
+            // 签名
+            String sign = SignUtil.getSign(params, config.getSecret());
+            params.put("sign", sign);
+
+            log.info("请求路径: {}", config.getBaseUrl()+request.getBasePath());
+            log.info("请求参数: {}", params);
+            // POST 调用
+            String respJson = HttpClientUntil.postJson(config.getBaseUrl(), request.getBasePath(), params, null);
+
+            log.info("请求已发送，开始处理响应");
+            if (respJson.isEmpty()) {
+                throw new RuntimeException("远程服务返回空响应");
+            }
+
+            JSONObject jsonObject = JSONObject.parseObject(respJson);
+            log.info("响应结果: {}", jsonObject);
+            if (jsonObject == null) {
+                throw new RuntimeException("无法解析远程服务响应");
+            }
+
+            // JSON 映射成响应对象
+            if ("0".equals(jsonObject.getString("code"))) {
+                return JSON.parseObject(respJson, request.getResponseClass());
+            } else {
+                T message = request.getResponseClass().newInstance();
+                message.setMessage(jsonObject.getString("message"));
+                message.setCode(jsonObject.getString("code"));
+                return message;
+            }
+        } catch (Exception e) {
+            log.error("执行请求时发生错误: {}", e.getMessage(), e);
+            throw e;
+        }
+    }
+
+
+}

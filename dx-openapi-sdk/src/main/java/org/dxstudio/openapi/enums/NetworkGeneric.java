@@ -19,13 +19,6 @@ public enum NetworkGeneric {
     /**
      * ETH兼容链
      */
-    ETH,
-
-    /**
-     * solana
-     */
-    SOLANA,
-
-    ;
+    ETH;
 
 }

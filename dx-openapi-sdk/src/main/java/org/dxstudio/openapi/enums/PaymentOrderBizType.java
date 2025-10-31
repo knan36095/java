@@ -1,6 +1,5 @@
 package org.dxstudio.openapi.enums;
 
-import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -1,18 +1,19 @@
-package org.dxstudio.openapi.param;
+package org.dxstudio.openapi.request;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.dxstudio.openapi.dto.ToAnyWalletByCustomRateResponseDto;
+import org.dxstudio.openapi.dto.ToAnyWalletResponseDto;
 import org.dxstudio.openapi.enums.NetworkType;
 
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ToAnyWalletByCustomRate extends MerchantAPIParam{
+public class ToAnyWalletByCustomRateRequest extends BaseRequest<ToAnyWalletByCustomRateResponseDto>{
 
     /**
      * 提款到账币种(钱包支持币种)
@@ -42,4 +43,14 @@ public class ToAnyWalletByCustomRate extends MerchantAPIParam{
     @NotNull(message = "报价金额不能为空")
     @DecimalMin(value = "0", message = "金额必须大于0", inclusive = false)
     private BigDecimal quoteAmount;
+
+    @Override
+    public Class<ToAnyWalletByCustomRateResponseDto> getResponseClass() {
+        return ToAnyWalletByCustomRateResponseDto.class;
+    }
+
+    @Override
+    public String getBasePath() {
+        return "/wallet-trade-merchant/v1/pay/blockchain/custom/rate/create";
+    }
 }

@@ -1,22 +1,17 @@
-package org.dxstudio.openapi.param;
+package org.dxstudio.openapi.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.dxstudio.openapi.dto.BaseResponseDto;
 
 @Data
-public class MerchantAPIParam {
+public abstract class BaseRequest<T extends BaseResponseDto> {
     /**
      * 商户请求key
      */
     @NotBlank(message = "商户请求key不能为空")
     private String key;
-    /**
-     * 商户请求secret  用于sign加密
-     */
-    @NotBlank(message = "商户请求secret不能为空")
-    private String secret;
-
     /**
      * 商户本地订单号
      */
@@ -33,17 +28,23 @@ public class MerchantAPIParam {
     /**
      * 回调地址(为空使用商户默认回调地址)
      */
-    @Size( max = 1024)
+    @Size(max = 1024)
     private String notifyUrl;
 
     /**
      * 成功后自动跳转地址
      */
-    @Size( max = 1024, message = "订单成功后跳转地址不能超过1024")
+    @Size(max = 1024, message = "订单成功后跳转地址不能超过1024")
     private String successRedirectUrl;
 
     /**
      * 回调信息中是否需要包含链转账信息
      */
     private Boolean isBlockchain = false;
+
+    public abstract Class<T> getResponseClass();
+
+    public abstract String getBasePath();
+
+
 }
