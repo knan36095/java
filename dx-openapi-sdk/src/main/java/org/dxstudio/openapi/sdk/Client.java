@@ -31,6 +31,7 @@ public class Client {
     private final ClientConfig clientConfig;
     // 添加 Validator 实例
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
     @SneakyThrows
     public <T extends BaseResponse> T execute(@Valid BaseRequest<T> request) {
         // 参数校验
@@ -54,45 +55,42 @@ public class Client {
             throw new IllegalArgumentException(sb.toString());
         }
 
-        try {
-            // 直接使用对象而非序列化后再反序列化
-            JSONObject params = new JSONObject();
-            // 这里保持原有逻辑，如需优化可考虑反射或其他方式直接转换
-            params = JSON.parseObject(JSON.toJSONString(request));
 
-            // 签名
-            String sign = SignUtil.getSign(params, clientConfig.getSecret());
-            params.put("sign", sign);
+        // 直接使用对象而非序列化后再反序列化
+        JSONObject params = new JSONObject();
+        // 这里保持原有逻辑，如需优化可考虑反射或其他方式直接转换
+        params = JSON.parseObject(JSON.toJSONString(request));
 
-            log.info("请求路径: {}", clientConfig.getBaseUrl()+request.getBasePath());
-            log.info("请求参数: {}", params);
-            // POST 调用
-            String respJson = HttpClientUntil.postJson(clientConfig.getBaseUrl(), request.getBasePath(), params, null);
+        // 签名
+        String sign = SignUtil.getSign(params, clientConfig.getSecret());
+        params.put("sign", sign);
 
-            log.info("请求已发送，开始处理响应");
-            if (respJson.isEmpty()) {
-                throw new RuntimeException("远程服务返回空响应");
-            }
+        log.info("请求路径: {}", clientConfig.getBaseUrl() + request.getBasePath());
+        log.info("请求参数: {}", params);
+        // POST 调用
+        String respJson = HttpClientUntil.postJson(clientConfig.getBaseUrl(), request.getBasePath(), params, null);
 
-            JSONObject jsonObject = JSONObject.parseObject(respJson);
-            log.info("响应结果: {}", jsonObject);
-            if (jsonObject == null) {
-                throw new RuntimeException("无法解析远程服务响应");
-            }
-
-            // JSON 映射成响应对象
-            if ("0".equals(jsonObject.getString("code"))) {
-                return JSON.parseObject(respJson, request.getResponseClass());
-            } else {
-                T message = request.getResponseClass().newInstance();
-                message.setMessage(jsonObject.getString("message"));
-                message.setCode(jsonObject.getString("code"));
-                return message;
-            }
-        } catch (Exception e) {
-            log.error("执行请求时发生错误: {}", e.getMessage(), e);
-            throw e;
+        log.info("请求已发送，开始处理响应");
+        if (respJson.isEmpty()) {
+            throw new RuntimeException("远程服务返回空响应");
         }
+
+        JSONObject jsonObject = JSONObject.parseObject(respJson);
+        log.info("响应结果: {}", jsonObject);
+        if (jsonObject == null) {
+            throw new RuntimeException("无法解析远程服务响应");
+        }
+
+        // JSON 映射成响应对象
+        if ("0".equals(jsonObject.getString("code"))) {
+            return JSON.parseObject(respJson, request.getResponseClass());
+        } else {
+            T message = request.getResponseClass().newInstance();
+            message.setMessage(jsonObject.getString("message"));
+            message.setCode(jsonObject.getString("code"));
+            return message;
+        }
+
     }
 
 
