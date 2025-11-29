@@ -1,6 +1,6 @@
 package charge;
 
-import config.ApiConfig;
+import apiconfig.ApiConfig;
 import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.request.AnyWalletAnyMoneyReceiveRequest;
 import org.dxstudio.openapi.request.AnyWalletFixMoneyReceiveByCustomRequest;

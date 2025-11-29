@@ -1,4 +1,4 @@
-package config;
+package apiconfig;
 
 import lombok.Data;
 

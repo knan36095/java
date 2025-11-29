@@ -1,6 +1,6 @@
 package withdrawal;
 
-import config.ApiConfig;
+import apiconfig.ApiConfig;
 import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.response.ToAnyWalletByCustomRateResponse;
 import org.dxstudio.openapi.response.ToAnyWalletResponse;
