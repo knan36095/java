@@ -75,8 +75,8 @@ public class Client {
             throw new RuntimeException("远程服务返回空响应");
         }
 
+        log.info("响应结果: {}", respJson);
         JSONObject jsonObject = JSONObject.parseObject(respJson);
-        log.info("响应结果: {}", jsonObject);
         if (jsonObject == null) {
             throw new RuntimeException("无法解析远程服务响应");
         }
