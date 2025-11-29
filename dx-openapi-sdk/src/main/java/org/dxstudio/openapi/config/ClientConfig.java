@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class Config {
+public class ClientConfig {
 
     /**
      * 商户请求secret  用于sign加密

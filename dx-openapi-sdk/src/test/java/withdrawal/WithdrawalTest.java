@@ -1,7 +1,7 @@
 package withdrawal;
 
 import config.ApiConfig;
-import org.dxstudio.openapi.config.Config;
+import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.response.ToAnyWalletByCustomRateResponse;
 import org.dxstudio.openapi.response.ToAnyWalletResponse;
 import org.dxstudio.openapi.response.ToMinPayWalletResponse;
@@ -14,7 +14,9 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.Random;
-
+/**
+ * 提现业务（代付）
+ */
 public class WithdrawalTest {
 
     private final ApiConfig apiConfig = new ApiConfig();
@@ -82,9 +84,9 @@ public class WithdrawalTest {
     }
 
     private  Client initClient(){
-        Config config=new Config();
-        config.setBaseUrl(apiConfig.getBaseUrl());
-        config.setSecret(apiConfig.getSecret());
-        return new Client(config);
+        ClientConfig clientConfig =new ClientConfig();
+        clientConfig.setBaseUrl(apiConfig.getBaseUrl());
+        clientConfig.setSecret(apiConfig.getSecret());
+        return new Client(clientConfig);
     }
 }

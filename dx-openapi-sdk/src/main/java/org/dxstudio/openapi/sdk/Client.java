@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.dxstudio.openapi.config.Config;
+import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.request.BaseRequest;
 import org.dxstudio.openapi.response.BaseResponse;
 import org.dxstudio.openapi.untils.HttpClientUntil;
@@ -24,7 +24,10 @@ import java.util.Set;
 @Slf4j
 public class Client {
 
-    private final Config config;
+    /**
+     * 客户端初始化配置类
+     */
+    private final ClientConfig clientConfig;
     // 添加 Validator 实例
     private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     @SneakyThrows
@@ -34,7 +37,7 @@ public class Client {
             throw new IllegalArgumentException("请求参数不能为空");
         }
 
-        if (config == null || StringUtils.isBlank(config.getSecret()) || StringUtils.isBlank(config.getBaseUrl())) {
+        if (clientConfig == null || StringUtils.isBlank(clientConfig.getSecret()) || StringUtils.isBlank(clientConfig.getBaseUrl())) {
             throw new IllegalStateException("配置信息不完整");
         }
         // 手动触发校验
@@ -57,13 +60,13 @@ public class Client {
             params = JSON.parseObject(JSON.toJSONString(request));
 
             // 签名
-            String sign = SignUtil.getSign(params, config.getSecret());
+            String sign = SignUtil.getSign(params, clientConfig.getSecret());
             params.put("sign", sign);
 
-            log.info("请求路径: {}", config.getBaseUrl()+request.getBasePath());
+            log.info("请求路径: {}", clientConfig.getBaseUrl()+request.getBasePath());
             log.info("请求参数: {}", params);
             // POST 调用
-            String respJson = HttpClientUntil.postJson(config.getBaseUrl(), request.getBasePath(), params, null);
+            String respJson = HttpClientUntil.postJson(clientConfig.getBaseUrl(), request.getBasePath(), params, null);
 
             log.info("请求已发送，开始处理响应");
             if (respJson.isEmpty()) {

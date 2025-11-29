@@ -1,7 +1,7 @@
 package charge;
 
 import config.ApiConfig;
-import org.dxstudio.openapi.config.Config;
+import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.request.AnyWalletAnyMoneyReceiveRequest;
 import org.dxstudio.openapi.request.AnyWalletFixMoneyReceiveByCustomRequest;
 import org.dxstudio.openapi.request.AnyWalletFixMoneyReceiveRequest;
@@ -15,6 +15,9 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
+/**
+ * 充值业务（代收）
+ */
 public class ChargeTest {
 
     private final ApiConfig apiConfig = new ApiConfig();
@@ -101,9 +104,9 @@ public class ChargeTest {
     }
 
     private Client initClient(){
-        Config config=new Config();
-        config.setBaseUrl(apiConfig.getBaseUrl());
-        config.setSecret(apiConfig.getSecret());
-        return new Client(config);
+        ClientConfig clientConfig =new ClientConfig();
+        clientConfig.setBaseUrl(apiConfig.getBaseUrl());
+        clientConfig.setSecret(apiConfig.getSecret());
+        return new Client(clientConfig);
     }
 }
