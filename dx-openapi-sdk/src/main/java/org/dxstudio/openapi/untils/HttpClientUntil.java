@@ -57,7 +57,7 @@ public class HttpClientUntil {
      */
     public static String postJson(String baseUrl, String basePath , JSONObject jsonBody, Map<String, String> headers) throws IOException {
             RequestBody body = RequestBody.create(
-                    jsonBody.toJSONString(), MediaType.parse("application/json; charset=utf-8"));
+                    MediaType.parse("application/json; charset=utf-8"),jsonBody.toJSONString());
 
             Request.Builder builder = new Request.Builder().url(baseUrl+basePath).post(body);
 

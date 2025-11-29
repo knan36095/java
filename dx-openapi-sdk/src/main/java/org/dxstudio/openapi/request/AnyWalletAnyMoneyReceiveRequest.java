@@ -1,11 +1,12 @@
 package org.dxstudio.openapi.request;
 
-import jakarta.validation.constraints.NotBlank;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.dxstudio.openapi.response.AnyWalletAnyMoneyReceiveResponse;
 import org.dxstudio.openapi.response.MinPayWalletReceiveResponse;
 
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @Data
