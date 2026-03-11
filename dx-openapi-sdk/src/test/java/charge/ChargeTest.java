@@ -34,9 +34,9 @@ public class ChargeTest {
         request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
         request.setAmount(new BigDecimal("10"));
         request.setCurrency("USDT");
-        request.setNotifyUrl("https://www.baidu.com");
+        request.setNotifyUrl("http://conan.test/notify");
         request.setLocalUserId("55");
-        request.setSuccessRedirectUrl("https://www.baidu.com");
+        request.setIsBlockchain(true);
         MinPayWalletReceiveResponse response = client.execute(request);
         System.out.println(response.getData());
     }

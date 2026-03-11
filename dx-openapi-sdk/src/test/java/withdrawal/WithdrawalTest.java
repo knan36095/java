@@ -1,6 +1,7 @@
 package withdrawal;
 
 import apiconfig.ApiConfig;
+import com.alibaba.fastjson2.JSONObject;
 import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.response.ToAnyWalletByCustomRateResponse;
 import org.dxstudio.openapi.response.ToAnyWalletResponse;
@@ -10,9 +11,11 @@ import org.dxstudio.openapi.request.ToAnyWalletByCustomRateRequest;
 import org.dxstudio.openapi.request.ToAnyWalletRequest;
 import org.dxstudio.openapi.request.ToMinPayWalletRequest;
 import org.dxstudio.openapi.sdk.Client;
+import org.dxstudio.openapi.untils.SignUtil;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Random;
 /**
  * 提现业务（代付）
@@ -89,4 +92,5 @@ public class WithdrawalTest {
         clientConfig.setSecret(apiConfig.getSecret());
         return new Client(clientConfig);
     }
+
 }

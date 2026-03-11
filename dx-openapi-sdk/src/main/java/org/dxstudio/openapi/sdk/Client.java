@@ -60,12 +60,14 @@ public class Client {
         JSONObject params = new JSONObject();
         // 这里保持原有逻辑，如需优化可考虑反射或其他方式直接转换
         params = JSON.parseObject(JSON.toJSONString(request));
-
+        params.remove("responseClass");
+        params.remove("basePath");
         // 签名
         String sign = SignUtil.getSign(params, clientConfig.getSecret());
         params.put("sign", sign);
 
         log.info("请求路径: {}", clientConfig.getBaseUrl() + request.getBasePath());
+
         log.info("请求参数: {}", params);
         // POST 调用
         String respJson = HttpClientUntil.postJson(clientConfig.getBaseUrl(), request.getBasePath(), params, null);
