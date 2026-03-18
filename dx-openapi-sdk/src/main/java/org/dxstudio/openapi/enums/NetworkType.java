@@ -17,7 +17,6 @@ public enum NetworkType {
      */
     BSC(NetworkGeneric.ETH),
 
-
     /**
      * polygon链
      */
@@ -26,12 +25,8 @@ public enum NetworkType {
     /**
      * ETHEREUM
      */
-    ETHEREUM( NetworkGeneric.ETH ),
+    ETHEREUM( NetworkGeneric.ETH );
 
-    /**
-     * VCHAIN私链
-     */
-    V_CHAIN( NetworkGeneric.ETH );
 
     private final NetworkGeneric generic;
 

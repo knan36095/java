@@ -6,6 +6,8 @@ import lombok.ToString;
 import org.dxstudio.openapi.enums.PaymentOrderBizType;
 import org.dxstudio.openapi.enums.PaymentOrderType;
 
+import java.math.BigDecimal;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
@@ -49,6 +51,33 @@ public class AnyWalletFixMoneyReceiveByCustomResponse extends BaseResponse<AnyWa
          * 公共访问密钥
          */
         private String publicKey;
+        /**
+         * 订单币种
+         */
+        private String currency;
+        /**
+         * 用户支付币种
+         */
+        private String userCurrency;
+
+        /**
+         * 订单金额
+         */
+        private BigDecimal amount;
+        /**
+         * 用户应付金额
+         */
+        private BigDecimal userReceivableAmount;
+        /**
+         * 汇率
+         */
+        private  String rate;
+        /**
+         * 汇率表达式
+         */
+        private  String rateExpression;
 
     }
+
+
 }

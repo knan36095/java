@@ -39,7 +39,6 @@ public class MinPayWalletReceiveResponse extends BaseResponse<MinPayWalletReceiv
          */
         private PaymentOrderBizType orderBizType;
 
-
         /**
          * 支付地址
          */

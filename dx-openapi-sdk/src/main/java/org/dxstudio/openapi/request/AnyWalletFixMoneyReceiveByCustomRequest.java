@@ -9,7 +9,11 @@ import org.dxstudio.openapi.response.AnyWalletFixMoneyReceiveByCustomResponse;
 import org.dxstudio.openapi.response.AnyWalletFixMoneyReceiveResponse;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
+/**
+ * 固定金额扫码支付请求参数 （商户自定义汇率）  7.3.2  ok
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AnyWalletFixMoneyReceiveByCustomRequest extends BaseRequest<AnyWalletFixMoneyReceiveByCustomResponse>{
@@ -32,7 +36,15 @@ public class AnyWalletFixMoneyReceiveByCustomRequest extends BaseRequest<AnyWall
     @NotNull(message = "报价金额不能为空")
     private BigDecimal quoteAmount;
 
+    /**
+     * 过期时间戳
+     */
+    private Long expireSecond;
 
+    /**
+     * 链转账主网
+     */
+    private ArrayList<String> networkLimits;
     @Override
     public Class<AnyWalletFixMoneyReceiveByCustomResponse> getResponseClass() {
         return AnyWalletFixMoneyReceiveByCustomResponse.class;

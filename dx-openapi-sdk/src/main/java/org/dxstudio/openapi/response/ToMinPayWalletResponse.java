@@ -36,7 +36,7 @@ public class ToMinPayWalletResponse extends BaseResponse<ToMinPayWalletResponse.
          */
         private PaymentOrderBizType orderBizType;
         /**
-         * 收款用户ID
+         * 收款用户ID（MINPAY钱包用户ID）
          */
         private Long toUserId;
 

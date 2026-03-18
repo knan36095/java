@@ -57,7 +57,7 @@ public class Client {
 
 
         // 直接使用对象而非序列化后再反序列化
-        JSONObject params = new JSONObject();
+        JSONObject params;
         // 这里保持原有逻辑，如需优化可考虑反射或其他方式直接转换
         params = JSON.parseObject(JSON.toJSONString(request));
         params.remove("responseClass");

@@ -10,7 +10,11 @@ import org.dxstudio.openapi.response.AnyWalletAnyMoneyReceiveResponse;
 import org.dxstudio.openapi.response.AnyWalletFixMoneyReceiveResponse;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
+/**
+ * 固定金额扫码支付请求参数 （市场汇率）7.3.1 ok
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AnyWalletFixMoneyReceiveRequest extends BaseRequest<AnyWalletFixMoneyReceiveResponse>{
@@ -34,7 +38,15 @@ public class AnyWalletFixMoneyReceiveRequest extends BaseRequest<AnyWalletFixMon
     @DecimalMin(value = "1", message = "收款金额最小为1")
     private BigDecimal amount;
 
+    /**
+     * 过期时间戳
+     */
+    private Long expireSecond;
 
+    /**
+     * 链转账主网
+     */
+    private ArrayList<String> networkLimits;
 
     @Override
     public Class<AnyWalletFixMoneyReceiveResponse> getResponseClass() {

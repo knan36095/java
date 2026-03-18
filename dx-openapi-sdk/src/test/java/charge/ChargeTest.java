@@ -72,10 +72,10 @@ public class ChargeTest {
         request.setKey(apiConfig.getKey());
         request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
         request.setUserCurrency("USDT");
-        request.setCurrency("USDT");
-        request.setAmount(new BigDecimal("10"));
+        request.setCurrency("CNY");
+        request.setAmount(new BigDecimal("100"));
         request.setLocalUserId("55");
-        request.setNotifyUrl("https://www.baidu.com");
+        request.setNotifyUrl("http://127.0.0.1:8080/merchant-demo/notify");
         request.setSuccessRedirectUrl("https://www.baidu.com");
         request.setIsBlockchain(true);
         AnyWalletFixMoneyReceiveResponse response = client.execute(request);

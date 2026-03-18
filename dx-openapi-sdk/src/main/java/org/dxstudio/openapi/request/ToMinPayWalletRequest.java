@@ -9,7 +9,9 @@ import lombok.EqualsAndHashCode;
 import org.dxstudio.openapi.response.ToMinPayWalletResponse;
 
 import java.math.BigDecimal;
-
+/**
+ * 提款至MINPAY钱包请求参数  5.2.1 ok
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ToMinPayWalletRequest extends BaseRequest<ToMinPayWalletResponse> {

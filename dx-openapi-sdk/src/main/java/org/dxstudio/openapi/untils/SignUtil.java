@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 
-import com.alibaba.fastjson2.JSONObject;
-import jdk.nashorn.internal.ir.debug.ClassHistogramElement;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -24,54 +22,24 @@ public class SignUtil {
         String arrStr = String.join(",", l);
         return "[" + arrStr + "]";
     }
-/*    public static String getString(Map<String, Object> p) {
-        List<String> query = new ArrayList<>();
-        p.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((v) -> {
-            String s;
-            if( v.getValue() == null ) return ;
-            if (v.getValue() instanceof List<?> vs) {
-                s = getListString((List<Map<String, Object>>) vs);
-            }else if (v.getValue() instanceof Map<?,?> vs){
-                s = "{" + getString( (Map<String, Object>) vs ) + "}";
-            } else if ( v.getValue() instanceof Double vs ) {
-                s = new BigDecimal(String.valueOf(vs)).stripTrailingZeros().toPlainString();
-            } else if ( v.getValue() instanceof Float vs ) {
-                s = new BigDecimal(String.valueOf(vs)).stripTrailingZeros().toPlainString();
-            } else if ( v.getValue() instanceof BigDecimal vs){
-                s = vs.stripTrailingZeros().toPlainString();
-            } else {
-                s = v.getValue().toString();
-            }
-            query.add(v.getKey() + "=" + s);
-        });
-        return String.join("&", query);
-    }*/
-
-
-    /*   if (v.getValue() instanceof List<?> vs) {
-        if(vs.isEmpty()) return;
-        Object first = vs.getFirst();
-        if(first instanceof Map<?,?>){
-            s = getListString((List<Map<String, Object>>) vs);
-        }else{
-            s = getListConstable(vs);
-        }*/
 
     public static String getString(Map<String, Object> p) {
         List<String> query = new ArrayList<>();
         p.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((v) -> {
             String s;
             Object value = v.getValue();
-            if( value == null ) return ;
+            if (value == null) return;
             if (value instanceof List<?>) {
                 List<?> list = (List<?>) value;
                 if (list.isEmpty()) return;
-                if(list instanceof Map<?,?>){
+                if (list instanceof Map<?, ?>) {
                     s = getListString((List<Map<String, Object>>) list);
-                }else{  s = getListConstable(list);}
-            }else if (value instanceof Map){
-                s = "{" + getString( (Map<String, Object>) value ) + "}";
-            }else if (value instanceof Double) {
+                } else {
+                    s = getListConstable(list);
+                }
+            } else if (value instanceof Map) {
+                s = "{" + getString((Map<String, Object>) value) + "}";
+            } else if (value instanceof Double) {
                 Double doubleValue = (Double) value;
                 s = new BigDecimal(String.valueOf(doubleValue)).stripTrailingZeros().toPlainString();
             } else if (value instanceof Float) {
@@ -92,7 +60,7 @@ public class SignUtil {
     private static String getListConstable(List<?> list) {
         List<String> l = new ArrayList<>();
         list.forEach(item -> {
-            l.add( String.valueOf(item) );
+            l.add(String.valueOf(item));
         });
         String arrStr = String.join(",", l);
         return "[" + arrStr + "]";

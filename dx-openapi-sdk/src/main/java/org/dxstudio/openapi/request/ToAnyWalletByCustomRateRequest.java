@@ -10,21 +10,24 @@ import org.dxstudio.openapi.enums.NetworkType;
 
 import java.math.BigDecimal;
 
+/**
+ * 提款数字币至任意钱包 （商户自定义汇率） 5.1.2 ok
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ToAnyWalletByCustomRateRequest extends BaseRequest<ToAnyWalletByCustomRateResponse>{
 
     /**
-     * 提款到账币种(钱包支持币种)
+     * 订单账币种不能为空
      */
-    @NotNull(message = "提款到账币种不能为空")
+    @NotBlank(message = "订单账币种不能为空")
     private String currency;
 
     /**
-     * 主网(目前仅支持TRON)
+     * 主网(目前仅支持 TRON、BSC、POLYGON、ETHEREUM)
      */
     @NotNull(message = "主网不能为空")
-    private NetworkType network = NetworkType.TRON;
+    private NetworkType network;
 
 
     @NotBlank(message = "提款地址不能为空")

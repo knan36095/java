@@ -6,12 +6,19 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 import org.dxstudio.openapi.response.BaseResponse;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/**
+ * 基础请求参数
+ * @param <T>
+ */
 @Data
 public abstract class BaseRequest<T extends BaseResponse> {
     /**
      * 商户请求key
      */
-    @NotBlank(message = "商户请求key不能为空")
+    @NotBlank(message = "商户请求apiKey不能为空")
     private String key;
     /**
      * 商户本地订单号
@@ -42,6 +49,8 @@ public abstract class BaseRequest<T extends BaseResponse> {
      * 回调信息中是否需要包含链转账信息
      */
     private Boolean isBlockchain = false;
+
+
 
     public abstract Class<T> getResponseClass();
 

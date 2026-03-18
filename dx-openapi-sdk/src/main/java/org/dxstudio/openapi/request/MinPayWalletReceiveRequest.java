@@ -9,7 +9,11 @@ import lombok.EqualsAndHashCode;
 import org.dxstudio.openapi.response.MinPayWalletReceiveResponse;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
+/**
+ * 创建MINPAY钱包支付订单 请求参数  7.1.1 ok
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class MinPayWalletReceiveRequest extends BaseRequest<MinPayWalletReceiveResponse>{
@@ -17,7 +21,7 @@ public class MinPayWalletReceiveRequest extends BaseRequest<MinPayWalletReceiveR
      * 订单币种
      */
     @NotBlank(message = "订单币种不能为空")
-    private String currency = "CNY";
+    private String currency ;
 
     /**
      * 收款金额
@@ -26,6 +30,10 @@ public class MinPayWalletReceiveRequest extends BaseRequest<MinPayWalletReceiveR
     @Min(value = 1, message = "收款金额最小为1")
     private BigDecimal amount;
 
+    /**
+     * 过期时间戳
+     */
+    private Long expireSecond;
 
     @Override
     public Class<MinPayWalletReceiveResponse> getResponseClass() {
