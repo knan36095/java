@@ -1,12 +1,12 @@
-package org.dxstudio.openapi.request;
+package org.dxstudio.openapi.request.digitalcurrency;
 
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.dxstudio.openapi.response.ToMinPayWalletResponse;
+import org.dxstudio.openapi.request.BaseRequest;
+import org.dxstudio.openapi.response.digitalcurrency.ToMinPayWalletResponse;
 
 import java.math.BigDecimal;
 /**

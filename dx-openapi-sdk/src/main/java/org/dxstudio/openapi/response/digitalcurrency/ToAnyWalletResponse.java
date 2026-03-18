@@ -1,22 +1,23 @@
-package org.dxstudio.openapi.response;
+package org.dxstudio.openapi.response.digitalcurrency;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.dxstudio.openapi.enums.PaymentOrderBizType;
 import org.dxstudio.openapi.enums.PaymentOrderType;
+import org.dxstudio.openapi.enums.TradeAddressTargetType;
+import org.dxstudio.openapi.response.BaseResponse;
 
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
-public class AnyWalletFixMoneyReceiveResponse extends BaseResponse<AnyWalletFixMoneyReceiveResponse.AnyWalletFixMoneyReceiveData>{
-
+public class ToAnyWalletResponse extends BaseResponse<ToAnyWalletResponse.ToAnyWalletData> {
 
     @Data
     @ToString
-    public static class AnyWalletFixMoneyReceiveData {
+    public static class ToAnyWalletData {
         /**
          * 订单号
          */
@@ -43,21 +44,27 @@ public class AnyWalletFixMoneyReceiveResponse extends BaseResponse<AnyWalletFixM
         private PaymentOrderBizType orderBizType;
 
         /**
-         * 支付地址
+         * 目标类型
          */
-        private String paymentUrl;
+        private TradeAddressTargetType targetType;
 
         /**
-         * 公共访问密钥
+         * 主网类型
          */
-        private String publicKey;
+        private String network;
+
+        /**
+         * 地址
+         */
+        private String address;
+
 
         /**
          * 订单币种
          */
         private String currency;
         /**
-         * 用户支付币种
+         * 用户收款币种
          */
         private String userCurrency;
 
@@ -65,17 +72,22 @@ public class AnyWalletFixMoneyReceiveResponse extends BaseResponse<AnyWalletFixM
          * 订单金额
          */
         private BigDecimal amount;
+
         /**
-         * 用户应付金额
+         * 用户实收金额 （去掉手续费）
+         */
+        private BigDecimal userAmount;
+        /**
+         * 用户应收金额
          */
         private BigDecimal userReceivableAmount;
         /**
          * 汇率
          */
-        private  String rate;
+        private String rate;
         /**
          * 汇率表达式
          */
-        private  String rateExpression;
+        private String rateExpression;
     }
 }

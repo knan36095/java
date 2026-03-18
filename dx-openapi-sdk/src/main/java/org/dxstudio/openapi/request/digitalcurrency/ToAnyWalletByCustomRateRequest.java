@@ -1,11 +1,12 @@
-package org.dxstudio.openapi.request;
+package org.dxstudio.openapi.request.digitalcurrency;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.dxstudio.openapi.response.ToAnyWalletByCustomRateResponse;
+import org.dxstudio.openapi.request.BaseRequest;
+import org.dxstudio.openapi.response.digitalcurrency.ToAnyWalletByCustomRateResponse;
 import org.dxstudio.openapi.enums.NetworkType;
 
 import java.math.BigDecimal;
@@ -15,7 +16,7 @@ import java.math.BigDecimal;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ToAnyWalletByCustomRateRequest extends BaseRequest<ToAnyWalletByCustomRateResponse>{
+public class ToAnyWalletByCustomRateRequest extends BaseRequest<ToAnyWalletByCustomRateResponse> {
 
     /**
      * 订单账币种不能为空

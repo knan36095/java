@@ -1,12 +1,12 @@
-package org.dxstudio.openapi.request;
+package org.dxstudio.openapi.request.digitalcurrency;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.dxstudio.openapi.response.AnyWalletFixMoneyReceiveByCustomResponse;
-import org.dxstudio.openapi.response.AnyWalletFixMoneyReceiveResponse;
+import org.dxstudio.openapi.request.BaseRequest;
+import org.dxstudio.openapi.response.digitalcurrency.AnyWalletFixMoneyReceiveByCustomResponse;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class AnyWalletFixMoneyReceiveByCustomRequest extends BaseRequest<AnyWalletFixMoneyReceiveByCustomResponse>{
+public class AnyWalletFixMoneyReceiveByCustomRequest extends BaseRequest<AnyWalletFixMoneyReceiveByCustomResponse> {
 
     /**
      * 需要用户支付的币种(仅数字币)

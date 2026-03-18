@@ -1,22 +1,21 @@
-package org.dxstudio.openapi.request;
+package org.dxstudio.openapi.request.digitalcurrency;
 
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.dxstudio.openapi.response.MinPayWalletReceiveResponse;
+import org.dxstudio.openapi.request.BaseRequest;
+import org.dxstudio.openapi.response.digitalcurrency.MinPayWalletReceiveResponse;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 /**
  * 创建MINPAY钱包支付订单 请求参数  7.1.1 ok
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class MinPayWalletReceiveRequest extends BaseRequest<MinPayWalletReceiveResponse>{
+public class MinPayWalletReceiveRequest extends BaseRequest<MinPayWalletReceiveResponse> {
     /**
      * 订单币种
      */

@@ -1,20 +1,22 @@
-package org.dxstudio.openapi.response;
+package org.dxstudio.openapi.response.digitalcurrency;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.dxstudio.openapi.enums.PaymentOrderBizType;
 import org.dxstudio.openapi.enums.PaymentOrderType;
+import org.dxstudio.openapi.response.BaseResponse;
+
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
-public class AnyWalletAnyMoneyReceiveResponse extends BaseResponse<AnyWalletAnyMoneyReceiveResponse.AnyWalletAnyMoneyReceiveData>{
+public class AnyWalletAnyMoneyReceiveByCustomResponse extends BaseResponse<AnyWalletAnyMoneyReceiveByCustomResponse.AnyWalletAnyMoneyReceiveByCustomResponseData> {
 
 
     @Data
     @ToString
-    public static class AnyWalletAnyMoneyReceiveData {
+    public static class AnyWalletAnyMoneyReceiveByCustomResponseData {
         /**
          * 订单号
          */

@@ -1,10 +1,10 @@
-package org.dxstudio.openapi.request;
+package org.dxstudio.openapi.request.digitalcurrency;
 
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.dxstudio.openapi.response.AnyWalletAnyMoneyReceiveResponse;
-import org.dxstudio.openapi.response.MinPayWalletReceiveResponse;
+import org.dxstudio.openapi.request.BaseRequest;
+import org.dxstudio.openapi.response.digitalcurrency.AnyWalletAnyMoneyReceiveResponse;
 
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class AnyWalletAnyMoneyReceiveRequest extends BaseRequest<AnyWalletAnyMoneyReceiveResponse>{
+public class AnyWalletAnyMoneyReceiveRequest extends BaseRequest<AnyWalletAnyMoneyReceiveResponse> {
 
     /**
      * 订单计价币种

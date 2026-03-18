@@ -1,4 +1,4 @@
-package org.dxstudio.openapi.response;
+package org.dxstudio.openapi.response.digitalcurrency;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -6,17 +6,18 @@ import lombok.ToString;
 import org.dxstudio.openapi.enums.PaymentOrderBizType;
 import org.dxstudio.openapi.enums.PaymentOrderType;
 import org.dxstudio.openapi.enums.TradeAddressTargetType;
+import org.dxstudio.openapi.response.BaseResponse;
 
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
-public class ToAnyWalletResponse extends BaseResponse<ToAnyWalletResponse.ToAnyWalletData> {
+public class ToAnyWalletByCustomRateResponse extends BaseResponse<ToAnyWalletByCustomRateResponse.ToAnyWalletByCustomRateData> {
 
     @Data
     @ToString
-    public static class ToAnyWalletData {
+    public static class ToAnyWalletByCustomRateData {
         /**
          * 订单号
          */

@@ -1,21 +1,18 @@
 package withdrawal;
 
 import apiconfig.ApiConfig;
-import com.alibaba.fastjson2.JSONObject;
 import org.dxstudio.openapi.config.ClientConfig;
-import org.dxstudio.openapi.response.ToAnyWalletByCustomRateResponse;
-import org.dxstudio.openapi.response.ToAnyWalletResponse;
-import org.dxstudio.openapi.response.ToMinPayWalletResponse;
+import org.dxstudio.openapi.response.digitalcurrency.ToAnyWalletByCustomRateResponse;
+import org.dxstudio.openapi.response.digitalcurrency.ToAnyWalletResponse;
+import org.dxstudio.openapi.response.digitalcurrency.ToMinPayWalletResponse;
 import org.dxstudio.openapi.enums.NetworkType;
-import org.dxstudio.openapi.request.ToAnyWalletByCustomRateRequest;
-import org.dxstudio.openapi.request.ToAnyWalletRequest;
-import org.dxstudio.openapi.request.ToMinPayWalletRequest;
+import org.dxstudio.openapi.request.digitalcurrency.ToAnyWalletByCustomRateRequest;
+import org.dxstudio.openapi.request.digitalcurrency.ToAnyWalletRequest;
+import org.dxstudio.openapi.request.digitalcurrency.ToMinPayWalletRequest;
 import org.dxstudio.openapi.sdk.Client;
-import org.dxstudio.openapi.untils.SignUtil;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Random;
 /**
  * 提现业务（代付）

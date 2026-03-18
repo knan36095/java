@@ -1,31 +1,35 @@
-package org.dxstudio.openapi.response;
+package org.dxstudio.openapi.response.digitalcurrency;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.dxstudio.openapi.enums.PaymentOrderBizType;
 import org.dxstudio.openapi.enums.PaymentOrderType;
+import org.dxstudio.openapi.response.BaseResponse;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@ToString(callSuper = true)
-public class ToMinPayWalletResponse extends BaseResponse<ToMinPayWalletResponse.ToMinPayWalletData> {
+@ToString
+public class MinPayWalletReceiveResponse extends BaseResponse<MinPayWalletReceiveResponse.MinPayWalletReceiveData> {
 
     @Data
     @ToString
-    public static class ToMinPayWalletData {
+    public static class MinPayWalletReceiveData {
         /**
          * 订单号
          */
-        private String orderId;
+        private Long orderId;
+
         /**
          * 商户本地用户ID
          */
         private String localUserId;
+
         /**
-         * 商户本地订单ID
+         * 商户本地订单号
          */
         private String localOrderId;
+
         /**
          * 订单类型
          */
@@ -35,11 +39,16 @@ public class ToMinPayWalletResponse extends BaseResponse<ToMinPayWalletResponse.
          * 订单业务类型
          */
         private PaymentOrderBizType orderBizType;
+
         /**
-         * 收款用户ID（MINPAY钱包用户ID）
+         * 支付地址
          */
-        private Long toUserId;
+        private String paymentUrl;
+
+        /**
+         * 公共访问密钥
+         */
+        private String publicKey;
 
     }
-
 }
