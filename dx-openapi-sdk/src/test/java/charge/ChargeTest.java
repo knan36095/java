@@ -22,27 +22,27 @@ public class ChargeTest {
     /**
      * 商户请求网关域名
      */
-    private  final String baseUrl = "https://api.wallet-dev.com";
+    private final String baseUrl = "https://api.wallet-dev.com";
     /**
      * 商户api请求 key 用于识别商户身份
      */
-    private  final String key = "9yUreYgTRtit39Dy";
+    private final String key = "9yUreYgTRtit39Dy";
     /**
      * 商户api请求secret  用于sign加密
      */
-    private  final String secret = "D2PQPllGEBOV4mcMxoKTM7foVpzqrjIx";
+    private final String secret = "D2PQPllGEBOV4mcMxoKTM7foVpzqrjIx";
 
     private final ClientConfig clientConfig = new ClientConfig(key, secret, baseUrl);
 
     private final Client client = new Client(clientConfig);
+
     /**
      * 创建minpay钱包支付订单
-     *
      */
     @Test
     public void MinPayWalletReceive() {
         MinPayWalletReceiveRequest request = new MinPayWalletReceiveRequest();
-        request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
+        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
         request.setAmount(new BigDecimal("10"));
         request.setCurrency("USDT");
         request.setNotifyUrl("http://conan.test/notify");
@@ -54,12 +54,11 @@ public class ChargeTest {
 
     /**
      * 创建任意金额扫码支付订单
-     *
      */
     @Test
     public void AnyWalletAnyMoneyReceive() {
         AnyWalletAnyMoneyReceiveRequest request = new AnyWalletAnyMoneyReceiveRequest();
-        request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
+        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
         request.setUserCurrency("USDT");
         request.setCurrency("USDT");
         request.setLocalUserId("55");
@@ -72,12 +71,11 @@ public class ChargeTest {
 
     /**
      * 创建限定金额扫码支付订单
-     *
      */
     @Test
     public void AnyWalletFixMoneyReceive() {
         AnyWalletFixMoneyReceiveRequest request = new AnyWalletFixMoneyReceiveRequest();
-        request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
+        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
         request.setUserCurrency("USDT");
         request.setCurrency("CNY");
         request.setAmount(new BigDecimal("100"));
@@ -91,12 +89,11 @@ public class ChargeTest {
 
     /**
      * 创建限定金额扫码支付订单(商户自定义汇率）
-     *
      */
     @Test
     public void AnyWalletFixMoneyByCustomReceive() {
         AnyWalletFixMoneyReceiveByCustomRequest request = new AnyWalletFixMoneyReceiveByCustomRequest();
-        request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
+        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
         request.setUserCurrency("USDT");
         request.setQuoteCurrency("CNY");
         request.setQuoteAmount(new BigDecimal("100"));
