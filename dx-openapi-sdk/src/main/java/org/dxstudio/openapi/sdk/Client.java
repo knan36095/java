@@ -39,8 +39,8 @@ public class Client {
             throw new IllegalArgumentException("请求参数不能为空");
         }
 
-        if (clientConfig == null || StringUtils.isBlank(clientConfig.getSecret()) || StringUtils.isBlank(clientConfig.getBaseUrl())) {
-            throw new IllegalStateException("配置信息不完整");
+        if (clientConfig == null||StringUtils.isBlank(clientConfig.getKey()) || StringUtils.isBlank(clientConfig.getSecret()) || StringUtils.isBlank(clientConfig.getBaseUrl())) {
+            throw new IllegalStateException("商户的api请求配置信息");
         }
         // 手动触发校验
         Set<ConstraintViolation<BaseRequest<T>>> violations = validator.validate(request);

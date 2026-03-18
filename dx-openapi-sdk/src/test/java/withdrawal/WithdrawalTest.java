@@ -1,6 +1,5 @@
 package withdrawal;
 
-import apiconfig.ApiConfig;
 import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.response.digitalcurrency.ToAnyWalletByCustomRateResponse;
 import org.dxstudio.openapi.response.digitalcurrency.ToAnyWalletResponse;
@@ -19,7 +18,22 @@ import java.util.Random;
  */
 public class WithdrawalTest {
 
-    private final ApiConfig apiConfig = new ApiConfig();
+    /**
+     * 商户请求网关域名
+     */
+    private  final String baseUrl = "https://api.wallet-dev.com";
+    /**
+     * 商户api请求 key 用于识别商户身份
+     */
+    private  final String key = "9yUreYgTRtit39Dy";
+    /**
+     * 商户api请求secret  用于sign加密
+     */
+    private  final String secret = "D2PQPllGEBOV4mcMxoKTM7foVpzqrjIx";
+
+    private final ClientConfig clientConfig = new ClientConfig(key, secret, baseUrl);
+
+    private final Client client = new Client(clientConfig);
 
 
     /**
@@ -27,9 +41,8 @@ public class WithdrawalTest {
      */
     @Test
     public void toMinPayWallet() {
-        Client client = initClient();
+
         ToMinPayWalletRequest param = new ToMinPayWalletRequest();
-        param.setKey(apiConfig.getKey());
         param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
         param.setEmail("knan36095@gmail.com");
@@ -45,9 +58,7 @@ public class WithdrawalTest {
      */
     @Test
     public void toAnyWallet() {
-        Client client = initClient();
         ToAnyWalletRequest param = new ToAnyWalletRequest();
-        param.setKey(apiConfig.getKey());
         param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
         param.setNotifyUrl("https://merchant/callback");
@@ -66,9 +77,7 @@ public class WithdrawalTest {
      */
     @Test
     public void toAnyWalletByCustomRate() {
-        Client client = initClient();
         ToAnyWalletByCustomRateRequest param = new ToAnyWalletByCustomRateRequest();
-        param.setKey(apiConfig.getKey());
         param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
         param.setNotifyUrl("https://merchant/callback");
@@ -83,11 +92,5 @@ public class WithdrawalTest {
         System.out.println(execute.toString());
     }
 
-    private  Client initClient(){
-        ClientConfig clientConfig =new ClientConfig();
-        clientConfig.setBaseUrl(apiConfig.getBaseUrl());
-        clientConfig.setSecret(apiConfig.getSecret());
-        return new Client(clientConfig);
-    }
 
 }

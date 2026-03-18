@@ -1,6 +1,5 @@
 package charge;
 
-import apiconfig.ApiConfig;
 import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.request.digitalcurrency.AnyWalletAnyMoneyReceiveRequest;
 import org.dxstudio.openapi.request.digitalcurrency.AnyWalletFixMoneyReceiveByCustomRequest;
@@ -20,17 +19,29 @@ import java.math.BigDecimal;
  */
 public class ChargeTest {
 
-    private final ApiConfig apiConfig = new ApiConfig();
+    /**
+     * 商户请求网关域名
+     */
+    private  final String baseUrl = "https://api.wallet-dev.com";
+    /**
+     * 商户api请求 key 用于识别商户身份
+     */
+    private  final String key = "9yUreYgTRtit39Dy";
+    /**
+     * 商户api请求secret  用于sign加密
+     */
+    private  final String secret = "D2PQPllGEBOV4mcMxoKTM7foVpzqrjIx";
 
+    private final ClientConfig clientConfig = new ClientConfig(key, secret, baseUrl);
+
+    private final Client client = new Client(clientConfig);
     /**
      * 创建minpay钱包支付订单
      *
      */
     @Test
     public void MinPayWalletReceive() {
-        Client client = initClient();
         MinPayWalletReceiveRequest request = new MinPayWalletReceiveRequest();
-        request.setKey(apiConfig.getKey());
         request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
         request.setAmount(new BigDecimal("10"));
         request.setCurrency("USDT");
@@ -47,9 +58,7 @@ public class ChargeTest {
      */
     @Test
     public void AnyWalletAnyMoneyReceive() {
-        Client client = initClient();
         AnyWalletAnyMoneyReceiveRequest request = new AnyWalletAnyMoneyReceiveRequest();
-        request.setKey(apiConfig.getKey());
         request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
         request.setUserCurrency("USDT");
         request.setCurrency("USDT");
@@ -67,9 +76,7 @@ public class ChargeTest {
      */
     @Test
     public void AnyWalletFixMoneyReceive() {
-        Client client = initClient();
         AnyWalletFixMoneyReceiveRequest request = new AnyWalletFixMoneyReceiveRequest();
-        request.setKey(apiConfig.getKey());
         request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
         request.setUserCurrency("USDT");
         request.setCurrency("CNY");
@@ -88,9 +95,7 @@ public class ChargeTest {
      */
     @Test
     public void AnyWalletFixMoneyByCustomReceive() {
-        Client client = initClient();
         AnyWalletFixMoneyReceiveByCustomRequest request = new AnyWalletFixMoneyReceiveByCustomRequest();
-        request.setKey(apiConfig.getKey());
         request.setLocalOrderId(String.valueOf(System.currentTimeMillis()/1000));
         request.setUserCurrency("USDT");
         request.setQuoteCurrency("CNY");
@@ -103,10 +108,4 @@ public class ChargeTest {
         System.out.println(execute.getData());
     }
 
-    private Client initClient(){
-        ClientConfig clientConfig =new ClientConfig();
-        clientConfig.setBaseUrl(apiConfig.getBaseUrl());
-        clientConfig.setSecret(apiConfig.getSecret());
-        return new Client(clientConfig);
-    }
 }
