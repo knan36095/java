@@ -1,6 +1,9 @@
 package withdrawal;
 
+import com.alibaba.fastjson2.JSONObject;
 import org.dxstudio.openapi.config.ClientConfig;
+import org.dxstudio.openapi.enums.OtcMethodType;
+import org.dxstudio.openapi.request.fiat.OtcPaymentRequest;
 import org.dxstudio.openapi.response.digital.ToAnyWalletByCustomRateResponse;
 import org.dxstudio.openapi.response.digital.ToAnyWalletResponse;
 import org.dxstudio.openapi.response.digital.ToMinPayWalletResponse;
@@ -8,6 +11,7 @@ import org.dxstudio.openapi.enums.NetworkType;
 import org.dxstudio.openapi.request.digital.ToAnyWalletByCustomRateRequest;
 import org.dxstudio.openapi.request.digital.ToAnyWalletRequest;
 import org.dxstudio.openapi.request.digital.ToMinPayWalletRequest;
+import org.dxstudio.openapi.response.fiat.OtcPaymentResponse;
 import org.dxstudio.openapi.sdk.Client;
 import org.junit.Test;
 
@@ -74,7 +78,7 @@ public class WithdrawalDemo {
 
 
     /**
-     * 提款至任意钱包(商户自定义汇率）
+     * 提款至任意钱包(商户自定义汇率） 文档 5.1.2
      */
     @Test
     public void toAnyWalletByCustomRate() {
@@ -92,5 +96,25 @@ public class WithdrawalDemo {
         System.out.println(execute.toString());
     }
 
+    /**
+     * OTC代付 文档 6.1.3
+     */
+    @Test
+    public void OtcPayment() {
+        OtcPaymentRequest request = new OtcPaymentRequest();
+        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
+        request.setCurrency("CNY");
+        request.setAmount(new BigDecimal("100"));
+        request.setLocalUserId("55");
+        request.setNotifyUrl("http://conan.test/notify");
+        request.setSpeed("NOW");
+        request.setMethod(OtcMethodType.ALIPAY);
+        JSONObject paymentData = new JSONObject();
+        paymentData.put("accountId", "13888888888");
+        paymentData.put("payee", "柯南");
+        request.setPaymentData(paymentData);
+        OtcPaymentResponse execute = client.execute(request);
+        System.out.println(execute.getData());
+    }
 
 }

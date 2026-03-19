@@ -115,25 +115,5 @@ public class ChargeDemo {
         AnyWalletFixMoneyReceiveByCustomResponse execute = client.execute(request);
         System.out.println(execute.getData());
     }
-    /**
-     * OTC代付 文档 6.1.3
-     */
-    @Test
-    public void OtcPayment() {
-        OtcPaymentRequest request = new OtcPaymentRequest();
-        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
-        request.setCurrency("CNY");
-        request.setAmount(new BigDecimal("100"));
-        request.setLocalUserId("55");
-        request.setNotifyUrl("http://conan.test/notify");
-        request.setSpeed("NOW");
-        request.setMethod(OtcMethodType.ALIPAY);
-        JSONObject paymentData = new JSONObject();
-        paymentData.put("accountId", "13888888888");
-        paymentData.put("payee", "柯南");
-        request.setPaymentData(paymentData);
-        OtcPaymentResponse execute = client.execute(request);
-        System.out.println(execute.getData());
-    }
 
 }
