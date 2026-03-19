@@ -4,8 +4,10 @@ import com.alibaba.fastjson2.JSONObject;
 import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.enums.OtcMethodType;
 import org.dxstudio.openapi.request.digital.*;
+import org.dxstudio.openapi.request.fiat.CashMoneyReceiveRequest;
 import org.dxstudio.openapi.request.fiat.OtcPaymentRequest;
 import org.dxstudio.openapi.response.digital.*;
+import org.dxstudio.openapi.response.fiat.CashMoneyReceiveResponse;
 import org.dxstudio.openapi.response.fiat.OtcPaymentResponse;
 import org.dxstudio.openapi.sdk.Client;
 import org.junit.Test;
@@ -116,4 +118,19 @@ public class ChargeDemo {
         System.out.println(execute.getData());
     }
 
+    /**
+     * 创建法币支付订单  文档 8.1.2
+     */
+    @Test
+    public void CashMoneyReceiveRequest() {
+        CashMoneyReceiveRequest request = new CashMoneyReceiveRequest();
+        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
+        request.setCurrency("CNY");
+        request.setAmount(new BigDecimal("100"));
+        request.setLocalUserId("55");
+        request.setNotifyUrl("http://conan.test/notify");
+        request.setChannelCode("tencentest1");
+        CashMoneyReceiveResponse execute = client.execute(request);
+        System.out.println(execute.getData());
+    }
 }
