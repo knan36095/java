@@ -1,13 +1,13 @@
 package withdrawal;
 
 import org.dxstudio.openapi.config.ClientConfig;
-import org.dxstudio.openapi.response.digitalcurrency.ToAnyWalletByCustomRateResponse;
-import org.dxstudio.openapi.response.digitalcurrency.ToAnyWalletResponse;
-import org.dxstudio.openapi.response.digitalcurrency.ToMinPayWalletResponse;
+import org.dxstudio.openapi.response.digital.ToAnyWalletByCustomRateResponse;
+import org.dxstudio.openapi.response.digital.ToAnyWalletResponse;
+import org.dxstudio.openapi.response.digital.ToMinPayWalletResponse;
 import org.dxstudio.openapi.enums.NetworkType;
-import org.dxstudio.openapi.request.digitalcurrency.ToAnyWalletByCustomRateRequest;
-import org.dxstudio.openapi.request.digitalcurrency.ToAnyWalletRequest;
-import org.dxstudio.openapi.request.digitalcurrency.ToMinPayWalletRequest;
+import org.dxstudio.openapi.request.digital.ToAnyWalletByCustomRateRequest;
+import org.dxstudio.openapi.request.digital.ToAnyWalletRequest;
+import org.dxstudio.openapi.request.digital.ToMinPayWalletRequest;
 import org.dxstudio.openapi.sdk.Client;
 import org.junit.Test;
 

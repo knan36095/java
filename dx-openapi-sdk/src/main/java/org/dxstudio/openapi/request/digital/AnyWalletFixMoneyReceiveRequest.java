@@ -1,4 +1,4 @@
-package org.dxstudio.openapi.request.digitalcurrency;
+package org.dxstudio.openapi.request.digital;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.dxstudio.openapi.request.BaseRequest;
-import org.dxstudio.openapi.response.digitalcurrency.AnyWalletFixMoneyReceiveResponse;
+import org.dxstudio.openapi.response.digital.AnyWalletFixMoneyReceiveResponse;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

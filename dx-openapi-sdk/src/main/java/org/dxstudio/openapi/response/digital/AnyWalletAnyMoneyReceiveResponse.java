@@ -1,4 +1,4 @@
-package org.dxstudio.openapi.response.digitalcurrency;
+package org.dxstudio.openapi.response.digital;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,17 +7,15 @@ import org.dxstudio.openapi.enums.PaymentOrderBizType;
 import org.dxstudio.openapi.enums.PaymentOrderType;
 import org.dxstudio.openapi.response.BaseResponse;
 
-import java.math.BigDecimal;
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
-public class AnyWalletFixMoneyReceiveResponse extends BaseResponse<AnyWalletFixMoneyReceiveResponse.AnyWalletFixMoneyReceiveData> {
+public class AnyWalletAnyMoneyReceiveResponse extends BaseResponse<AnyWalletAnyMoneyReceiveResponse.AnyWalletAnyMoneyReceiveData> {
 
 
     @Data
     @ToString
-    public static class AnyWalletFixMoneyReceiveData {
+    public static class AnyWalletAnyMoneyReceiveData {
         /**
          * 订单号
          */
@@ -43,6 +41,7 @@ public class AnyWalletFixMoneyReceiveResponse extends BaseResponse<AnyWalletFixM
          */
         private PaymentOrderBizType orderBizType;
 
+
         /**
          * 支付地址
          */
@@ -53,30 +52,5 @@ public class AnyWalletFixMoneyReceiveResponse extends BaseResponse<AnyWalletFixM
          */
         private String publicKey;
 
-        /**
-         * 订单币种
-         */
-        private String currency;
-        /**
-         * 用户支付币种
-         */
-        private String userCurrency;
-
-        /**
-         * 订单金额
-         */
-        private BigDecimal amount;
-        /**
-         * 用户应付金额
-         */
-        private BigDecimal userReceivableAmount;
-        /**
-         * 汇率
-         */
-        private  String rate;
-        /**
-         * 汇率表达式
-         */
-        private  String rateExpression;
     }
 }

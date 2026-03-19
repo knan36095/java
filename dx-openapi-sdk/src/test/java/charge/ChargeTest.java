@@ -1,14 +1,14 @@
 package charge;
 
 import org.dxstudio.openapi.config.ClientConfig;
-import org.dxstudio.openapi.request.digitalcurrency.AnyWalletAnyMoneyReceiveRequest;
-import org.dxstudio.openapi.request.digitalcurrency.AnyWalletFixMoneyReceiveByCustomRequest;
-import org.dxstudio.openapi.request.digitalcurrency.AnyWalletFixMoneyReceiveRequest;
-import org.dxstudio.openapi.request.digitalcurrency.MinPayWalletReceiveRequest;
-import org.dxstudio.openapi.response.digitalcurrency.AnyWalletAnyMoneyReceiveResponse;
-import org.dxstudio.openapi.response.digitalcurrency.AnyWalletFixMoneyReceiveByCustomResponse;
-import org.dxstudio.openapi.response.digitalcurrency.AnyWalletFixMoneyReceiveResponse;
-import org.dxstudio.openapi.response.digitalcurrency.MinPayWalletReceiveResponse;
+import org.dxstudio.openapi.request.digital.AnyWalletAnyMoneyReceiveRequest;
+import org.dxstudio.openapi.request.digital.AnyWalletFixMoneyReceiveByCustomRequest;
+import org.dxstudio.openapi.request.digital.AnyWalletFixMoneyReceiveRequest;
+import org.dxstudio.openapi.request.digital.MinPayWalletReceiveRequest;
+import org.dxstudio.openapi.response.digital.AnyWalletAnyMoneyReceiveResponse;
+import org.dxstudio.openapi.response.digital.AnyWalletFixMoneyReceiveByCustomResponse;
+import org.dxstudio.openapi.response.digital.AnyWalletFixMoneyReceiveResponse;
+import org.dxstudio.openapi.response.digital.MinPayWalletReceiveResponse;
 import org.dxstudio.openapi.sdk.Client;
 import org.junit.Test;
 

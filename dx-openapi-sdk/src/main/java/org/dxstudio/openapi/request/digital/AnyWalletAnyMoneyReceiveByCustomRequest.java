@@ -1,9 +1,9 @@
-package org.dxstudio.openapi.request.digitalcurrency;
+package org.dxstudio.openapi.request.digital;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.dxstudio.openapi.request.BaseRequest;
-import org.dxstudio.openapi.response.digitalcurrency.AnyWalletAnyMoneyReceiveByCustomResponse;
+import org.dxstudio.openapi.response.digital.AnyWalletAnyMoneyReceiveByCustomResponse;
 
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package org.dxstudio.openapi.response.digitalcurrency;
+package org.dxstudio.openapi.response.digital;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
