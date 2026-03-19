@@ -18,6 +18,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import java.io.IOException;
 import java.util.Set;
 
 @Data
@@ -67,28 +68,35 @@ public class Client {
         log.info("请求路径: {}", clientConfig.getBaseUrl() + request.getBasePath());
 
         log.info("请求参数: {}", params);
-        // POST 调用
-        String respJson = HttpClientUntil.postJson(clientConfig.getBaseUrl(), request.getBasePath(), params, null);
+        String respJson = null;
+        try {
+            // POST 调用
+             respJson = HttpClientUntil.postJson(clientConfig.getBaseUrl(), request.getBasePath(), params, null);
 
-        log.info("请求已发送，开始处理响应");
-        if (respJson.isEmpty()) {
-            throw new RuntimeException("远程服务返回空响应");
-        }
+            log.info("请求已发送，开始处理响应");
+            if (respJson.isEmpty()) {
+                throw new RuntimeException("远程服务返回空响应");
+            }
 
-        log.info("响应结果: {}", respJson);
-        JSONObject jsonObject = JSONObject.parseObject(respJson);
-        if (jsonObject == null) {
-            throw new RuntimeException("无法解析远程服务响应");
-        }
+            log.info("响应结果: {}", respJson);
+            JSONObject jsonObject = JSONObject.parseObject(respJson);
+            if (jsonObject == null) {
+                throw new RuntimeException("无法解析远程服务响应");
+            }
 
-        // JSON 映射成响应对象
-        if ("0".equals(jsonObject.getString("code"))) {
-            return JSON.parseObject(respJson, request.getResponseClass());
-        } else {
-            T message = request.getResponseClass().newInstance();
-            message.setMessage(jsonObject.getString("message"));
-            message.setCode(jsonObject.getString("code"));
-            return message;
+            // JSON 映射成响应对象
+            if ("0".equals(jsonObject.getString("code"))) {
+                return JSON.parseObject(respJson, request.getResponseClass());
+            } else {
+                T message = request.getResponseClass().newInstance();
+                message.setMessage(jsonObject.getString("message"));
+                message.setCode(jsonObject.getString("code"));
+                return message;
+            }
+        }  catch (Exception e) {
+            log.info("请求结果: {}", respJson);
+            log.error("请求异常: {}", e.getMessage());
+            throw new RuntimeException(e);
         }
 
     }
