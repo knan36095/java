@@ -1,15 +1,15 @@
 package org.dxstudio.openapi.request.fiat;
 
 import com.alibaba.fastjson2.JSONObject;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.dxstudio.openapi.enums.OtcMethodType;
 import org.dxstudio.openapi.request.BaseRequest;
 import org.dxstudio.openapi.response.fiat.OtcPaymentResponse;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @Data

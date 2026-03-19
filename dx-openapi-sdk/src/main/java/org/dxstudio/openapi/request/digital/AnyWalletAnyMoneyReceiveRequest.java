@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import org.dxstudio.openapi.request.BaseRequest;
 import org.dxstudio.openapi.response.digital.AnyWalletAnyMoneyReceiveResponse;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 

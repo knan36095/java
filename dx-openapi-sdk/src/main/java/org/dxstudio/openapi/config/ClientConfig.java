@@ -4,7 +4,7 @@ package org.dxstudio.openapi.config;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 @Data
 @RequiredArgsConstructor

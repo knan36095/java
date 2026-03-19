@@ -3,6 +3,10 @@ package org.dxstudio.openapi.sdk;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Valid;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -14,10 +18,6 @@ import org.dxstudio.openapi.response.BaseResponse;
 import org.dxstudio.openapi.untils.HttpClientUntil;
 import org.dxstudio.openapi.untils.SignUtil;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Valid;
-import javax.validation.Validation;
-import javax.validation.Validator;
 import java.io.IOException;
 import java.util.Set;
 
