@@ -16,7 +16,7 @@ import java.util.Random;
 /**
  * 提现业务（代付）
  */
-public class WithdrawalTest {
+public class WithdrawalDemo {
 
     /**
      * 商户请求网关域名
@@ -37,7 +37,7 @@ public class WithdrawalTest {
 
 
     /**
-     * 提款至MinPay钱包
+     * 提款至MinPay钱包 文档 5.2.1
      */
     @Test
     public void toMinPayWallet() {
@@ -46,25 +46,26 @@ public class WithdrawalTest {
         param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
         param.setEmail("knan36095@gmail.com");
-        param.setAmount(new BigDecimal("10"));
+        param.setAmount(new BigDecimal("3"));
         param.setCurrency("USDT");
-        param.setNotifyUrl("https://merchant/callback");
+        param.setNotifyUrl("http://conan.test/notify");
         ToMinPayWalletResponse execute = client.execute(param);
         System.out.println(execute.toString());
     }
 
     /**
-     * 提款至任意钱包
+     * 提款至任意钱包（市场汇率） 文档 5.1.1
      */
     @Test
     public void toAnyWallet() {
         ToAnyWalletRequest param = new ToAnyWalletRequest();
         param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
-        param.setNotifyUrl("https://merchant/callback");
+        param.setNotifyUrl("http://conan.test/notify");
         param.setNetwork(NetworkType.TRON);
-        param.setAmount(new BigDecimal("10"));
-        param.setCurrency("USDT");
+        param.setAmount(new BigDecimal("60"));
+        param.setCurrency("CNY");
+        param.setUserCurrency("USDT");
         param.setAddress("TPutFhYUQnrRxHSmKVwjp55vgk9QY6r5nS");
         param.setIsBlockchain(true);
         ToAnyWalletResponse execute = client.execute(param);
@@ -80,13 +81,12 @@ public class WithdrawalTest {
         ToAnyWalletByCustomRateRequest param = new ToAnyWalletByCustomRateRequest();
         param.setLocalOrderId(String.valueOf(new Random().nextInt(10000)));
         param.setLocalUserId("55");
-        param.setNotifyUrl("https://merchant/callback");
+        param.setNotifyUrl("http://conan.test/notify");
         param.setNetwork(NetworkType.TRON);
         param.setQuoteAmount(new BigDecimal("100"));
         param.setQuoteCurrency("CNY");
         param.setCurrency("USDT");
         param.setAddress("TPutFhYUQnrRxHSmKVwjp55vgk9QY6r5nS");
-        param.setIsBlockchain(true);
         param.setIsBlockchain(true);
         ToAnyWalletByCustomRateResponse execute = client.execute(param);
         System.out.println(execute.toString());

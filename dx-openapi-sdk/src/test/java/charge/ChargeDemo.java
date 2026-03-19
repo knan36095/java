@@ -1,14 +1,8 @@
 package charge;
 
 import org.dxstudio.openapi.config.ClientConfig;
-import org.dxstudio.openapi.request.digital.AnyWalletAnyMoneyReceiveRequest;
-import org.dxstudio.openapi.request.digital.AnyWalletFixMoneyReceiveByCustomRequest;
-import org.dxstudio.openapi.request.digital.AnyWalletFixMoneyReceiveRequest;
-import org.dxstudio.openapi.request.digital.MinPayWalletReceiveRequest;
-import org.dxstudio.openapi.response.digital.AnyWalletAnyMoneyReceiveResponse;
-import org.dxstudio.openapi.response.digital.AnyWalletFixMoneyReceiveByCustomResponse;
-import org.dxstudio.openapi.response.digital.AnyWalletFixMoneyReceiveResponse;
-import org.dxstudio.openapi.response.digital.MinPayWalletReceiveResponse;
+import org.dxstudio.openapi.request.digital.*;
+import org.dxstudio.openapi.response.digital.*;
 import org.dxstudio.openapi.sdk.Client;
 import org.junit.Test;
 
@@ -17,7 +11,7 @@ import java.math.BigDecimal;
 /**
  * 充值业务（代收）
  */
-public class ChargeTest {
+public class ChargeDemo {
 
     /**
      * 商户请求网关域名
@@ -37,7 +31,7 @@ public class ChargeTest {
     private final Client client = new Client(clientConfig);
 
     /**
-     * 创建minpay钱包支付订单
+     * 创建minpay钱包支付订单   文档 7.1.1
      */
     @Test
     public void MinPayWalletReceive() {
@@ -47,30 +41,45 @@ public class ChargeTest {
         request.setCurrency("USDT");
         request.setNotifyUrl("http://conan.test/notify");
         request.setLocalUserId("55");
-        request.setIsBlockchain(true);
         MinPayWalletReceiveResponse response = client.execute(request);
         System.out.println(response.getData());
     }
 
     /**
-     * 创建任意金额扫码支付订单
+     * 创建任意金额扫码支付订单（市场汇率）  文档 7.2.1
      */
     @Test
     public void AnyWalletAnyMoneyReceive() {
         AnyWalletAnyMoneyReceiveRequest request = new AnyWalletAnyMoneyReceiveRequest();
         request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
         request.setUserCurrency("USDT");
-        request.setCurrency("USDT");
+        request.setCurrency("CNY");
         request.setLocalUserId("55");
-        request.setNotifyUrl("https://www.baidu.com");
-        request.setSuccessRedirectUrl("https://www.baidu.com");
+        request.setNotifyUrl("http://conan.test/notify");
         request.setIsBlockchain(true);
         AnyWalletAnyMoneyReceiveResponse response = client.execute(request);
         System.out.println(response.getData());
     }
 
+
     /**
-     * 创建限定金额扫码支付订单
+     * 创建任意金额扫码支付订单（商户自定义汇率）  文档 7.2.2
+     */
+    @Test
+    public void AnyWalletAnyMoneyReceiveByCustom() {
+        AnyWalletAnyMoneyReceiveByCustomRequest request = new AnyWalletAnyMoneyReceiveByCustomRequest();
+        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
+        request.setUserCurrency("USDT");
+        request.setCurrency("CNY");
+        request.setLocalUserId("55");
+        request.setNotifyUrl("http://conan.test/notify");
+        request.setIsBlockchain(true);
+        AnyWalletAnyMoneyReceiveByCustomResponse response = client.execute(request);
+        System.out.println(response.getData());
+    }
+
+    /**
+     * 创建限定金额扫码支付订单 （市场汇率）文档 7.3.1
      */
     @Test
     public void AnyWalletFixMoneyReceive() {
@@ -80,15 +89,14 @@ public class ChargeTest {
         request.setCurrency("CNY");
         request.setAmount(new BigDecimal("100"));
         request.setLocalUserId("55");
-        request.setNotifyUrl("http://127.0.0.1:8080/merchant-demo/notify");
-        request.setSuccessRedirectUrl("https://www.baidu.com");
+        request.setNotifyUrl("http://conan.test/notify");
         request.setIsBlockchain(true);
         AnyWalletFixMoneyReceiveResponse response = client.execute(request);
         System.out.println(response.getData());
     }
 
     /**
-     * 创建限定金额扫码支付订单(商户自定义汇率）
+     * 创建限定金额扫码支付订单(商户自定义汇率） 文档 7.3.2
      */
     @Test
     public void AnyWalletFixMoneyByCustomReceive() {
@@ -98,11 +106,11 @@ public class ChargeTest {
         request.setQuoteCurrency("CNY");
         request.setQuoteAmount(new BigDecimal("100"));
         request.setLocalUserId("55");
-        request.setNotifyUrl("https://www.baidu.com");
-        request.setSuccessRedirectUrl("https://www.baidu.com");
+        request.setNotifyUrl("http://conan.test/notify");
         request.setIsBlockchain(true);
         AnyWalletFixMoneyReceiveByCustomResponse execute = client.execute(request);
         System.out.println(execute.getData());
     }
+
 
 }

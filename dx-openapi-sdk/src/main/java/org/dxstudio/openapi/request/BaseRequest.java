@@ -15,11 +15,7 @@ import java.util.Arrays;
  */
 @Data
 public abstract class BaseRequest<T extends BaseResponse> {
-    /**
-     * 商户请求key
-     */
-    @NotBlank(message = "商户请求apiKey不能为空")
-    private String key;
+
     /**
      * 商户本地订单号
      */
@@ -49,7 +45,6 @@ public abstract class BaseRequest<T extends BaseResponse> {
      * 回调信息中是否需要包含链转账信息
      */
     private Boolean isBlockchain = false;
-
 
 
     public abstract Class<T> getResponseClass();

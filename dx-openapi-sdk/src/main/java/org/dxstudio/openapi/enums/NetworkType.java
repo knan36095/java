@@ -8,22 +8,22 @@ import lombok.Getter;
 public enum NetworkType {
 
     /**
-     * 波场
+     * 波场  TRC20
      */
     TRON(NetworkGeneric.TRON),
 
     /**
-     * 币安
+     * 币安 BEP20
      */
     BSC(NetworkGeneric.ETH),
 
     /**
-     * polygon链
+     * polygon链 ERC-20（跟以太坊的ERC20不是一回事儿 ）
      */
     POLYGON( NetworkGeneric.ETH),
 
     /**
-     * ETHEREUM
+     * 以太坊链 ERC20
      */
     ETHEREUM( NetworkGeneric.ETH );
 

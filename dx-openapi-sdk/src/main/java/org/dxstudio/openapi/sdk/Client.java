@@ -39,7 +39,7 @@ public class Client {
             throw new IllegalArgumentException("请求参数不能为空");
         }
 
-        if (clientConfig == null||StringUtils.isBlank(clientConfig.getKey()) || StringUtils.isBlank(clientConfig.getSecret()) || StringUtils.isBlank(clientConfig.getBaseUrl())) {
+        if (clientConfig == null || StringUtils.isBlank(clientConfig.getKey()) || StringUtils.isBlank(clientConfig.getSecret()) || StringUtils.isBlank(clientConfig.getBaseUrl())) {
             throw new IllegalStateException("商户的api请求配置信息");
         }
         // 手动触发校验
@@ -55,11 +55,9 @@ public class Client {
             throw new IllegalArgumentException(sb.toString());
         }
 
-
-        // 直接使用对象而非序列化后再反序列化
-        JSONObject params;
         // 这里保持原有逻辑，如需优化可考虑反射或其他方式直接转换
-        params = JSON.parseObject(JSON.toJSONString(request));
+        JSONObject params = JSON.parseObject(JSON.toJSONString(request));
+        params.put("key", clientConfig.getKey());
         params.remove("responseClass");
         params.remove("basePath");
         // 签名
