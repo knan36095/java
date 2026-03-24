@@ -18,7 +18,7 @@ public class MinPayWalletReceiveResponse extends BaseResponse<MinPayWalletReceiv
         /**
          * 订单号
          */
-        private Long orderId;
+        private String orderId;
 
         /**
          * 商户本地用户ID

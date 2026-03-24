@@ -19,7 +19,7 @@ public class AnyWalletAnyMoneyReceiveResponse extends BaseResponse<AnyWalletAnyM
         /**
          * 订单号
          */
-        private Long orderId;
+        private String orderId;
 
         /**
          * 商户本地用户ID

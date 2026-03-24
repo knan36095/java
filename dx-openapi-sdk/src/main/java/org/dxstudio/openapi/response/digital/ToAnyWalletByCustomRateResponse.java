@@ -21,7 +21,7 @@ public class ToAnyWalletByCustomRateResponse extends BaseResponse<ToAnyWalletByC
         /**
          * 订单号
          */
-        private Long orderId;
+        private String orderId;
 
         /**
          * 商户本地用户ID

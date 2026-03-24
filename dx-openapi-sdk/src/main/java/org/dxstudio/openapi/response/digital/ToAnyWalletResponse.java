@@ -21,7 +21,7 @@ public class ToAnyWalletResponse extends BaseResponse<ToAnyWalletResponse.ToAnyW
         /**
          * 订单号
          */
-        private Long orderId;
+        private String orderId;
 
         /**
          * 商户本地用户ID
