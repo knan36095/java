@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.alibaba.fastjson2.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -76,5 +77,19 @@ public class SignUtil {
         log.info("待加密字符串 {}", originalSign);
         return DigestUtils.md5Hex(originalSign.getBytes());
     }
+
+
+    public static Boolean verifySign(JSONObject param, String key,String secret) {
+
+        log.info("收到回调通知 {}", param.toJSONString());
+        param.put("key", key);
+        //验证签名
+        String sign = param.getString("sign");
+        param.remove("sign");
+
+        String validStr = getSign(param, secret);
+
+        return validStr.equals(sign);
+    };
 
 }

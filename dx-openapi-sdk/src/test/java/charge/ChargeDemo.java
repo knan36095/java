@@ -3,6 +3,7 @@ package charge;
 import com.alibaba.fastjson2.JSONObject;
 import org.dxstudio.openapi.config.ClientConfig;
 import org.dxstudio.openapi.enums.OtcMethodType;
+import org.dxstudio.openapi.enums.Period;
 import org.dxstudio.openapi.request.digital.*;
 import org.dxstudio.openapi.request.fiat.CashMoneyReceiveRequest;
 import org.dxstudio.openapi.request.fiat.OtcPaymentRequest;
@@ -131,6 +132,21 @@ public class ChargeDemo {
         request.setNotifyUrl("http://conan.test/notify");
         request.setChannelCode("tencentest1");
         CashMoneyReceiveResponse execute = client.execute(request);
+        System.out.println(execute.getData());
+    }
+
+    /**
+     * 创建能量代理单子
+     */
+    @Test
+    public void EnergyRentalMoneyReceive() {
+        EnergyRentalMoneyReceiveRequest request = new EnergyRentalMoneyReceiveRequest();
+        request.setLocalOrderId(String.valueOf(System.currentTimeMillis() / 1000));
+        request.setLocalUserId("55");
+        request.setEnergy(64000);
+        request.setNotifyUrl("http://conan.test/notify");
+        request.setPeriod(Period.getByCode("_1D"));
+        EnergyRentalMoneyReceiveResponse execute = client.execute(request);
         System.out.println(execute.getData());
     }
 }

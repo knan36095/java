@@ -78,7 +78,19 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <distributionManagement>
+        <snapshotRepository>
+            <id>dx-common-snapshot</id>
+            <name>dx common Snapshot</name>
+            <url>http://192.168.222.10:8081/repository/dx-common-snapshot/</url>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+        <repository>
+            <id>dx-common-releases</id>
+            <name>dx common Release</name>
+            <url>http://192.168.222.10:8081/repository/dx-common-snapshot/</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <plugins>

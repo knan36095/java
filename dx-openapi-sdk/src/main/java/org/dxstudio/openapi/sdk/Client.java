@@ -57,7 +57,8 @@ public class Client {
         }
 
         // 这里保持原有逻辑，如需优化可考虑反射或其他方式直接转换
-        JSONObject params = JSON.parseObject(JSON.toJSONString(request));
+        log.info("request参数: {}", request);
+        JSONObject params = (JSONObject) JSON.toJSON(request);
         params.put("key", clientConfig.getKey());
         params.remove("responseClass");
         params.remove("basePath");
@@ -100,6 +101,5 @@ public class Client {
         }
 
     }
-
 
 }

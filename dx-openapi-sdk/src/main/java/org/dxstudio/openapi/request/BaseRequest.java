@@ -2,6 +2,7 @@ package org.dxstudio.openapi.request;
 
 
 
+import com.alibaba.fastjson2.annotation.JSONField;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -47,9 +48,9 @@ public abstract class BaseRequest<T extends BaseResponse> {
      */
     private Boolean isBlockchain = false;
 
-
+    @JSONField(serialize = false)
     public abstract Class<T> getResponseClass();
-
+    @JSONField(serialize = false)
     public abstract String getBasePath();
 
 
